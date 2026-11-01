@@ -3,39 +3,82 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="noindex,nofollow"><meta name="referrer" content="no-referrer">
 <title>Fridge board</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
-html,body{margin:0;height:100%;background:#16191d;color:#e8e6e1;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
-body{display:flex;flex-direction:column}
-header{padding:2.5vmin 4vmin 1vmin;display:flex;justify-content:space-between;align-items:baseline;gap:2vmin;flex-wrap:wrap}
-h1{margin:0;font-size:max(32px,6vmin);font-weight:600}
-#upd{font-size:max(16px,2.4vmin);color:#9aa3ad}
-main{flex:1;padding:1vmin 4vmin;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,520px),1fr));gap:3vmin;align-content:start;overflow:auto}
-section{background:#20252b;border-radius:2vmin;padding:2.5vmin 3.5vmin}
-h2{margin:0 0 1.5vmin;font-size:max(22px,3.6vmin);color:#8fc1b5;font-weight:600}
-ul{margin:0;padding:0;list-style:none}
-li{font-size:max(22px,4vmin);padding:1.2vmin 0;border-bottom:1px solid #2e353d;line-height:1.25}
-li:last-child{border-bottom:0}
-footer{padding:1.5vmin 4vmin;background:#3a2f1c;color:#f3d79a;font-size:max(14px,2vmin);text-align:center}
-#err{color:#e88;font-size:max(14px,2vmin)}
+:root{--ink:#2b2350}
+html,body{margin:0;min-height:100%}
+body{font-family:Fredoka,"Baloo 2","Comic Sans MS","Segoe UI Rounded",system-ui,sans-serif;color:var(--ink);
+ background:linear-gradient(135deg,#fff3c4 0%,#ffd6e7 45%,#cdeeff 100%);display:flex;flex-direction:column;min-height:100vh;position:relative;overflow-x:hidden}
+.deco{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+.deco span{position:absolute;bottom:-10vmin;font-size:6vmin;opacity:.35;animation:up 28s linear infinite;will-change:transform}
+.deco span:nth-child(1){left:6%;animation-delay:0s}.deco span:nth-child(2){left:24%;animation-delay:-7s;font-size:4.5vmin}
+.deco span:nth-child(3){left:47%;animation-delay:-14s}.deco span:nth-child(4){left:68%;animation-delay:-4s;font-size:5vmin}
+.deco span:nth-child(5){left:88%;animation-delay:-19s}
+@keyframes up{to{transform:translateY(-120vh) rotate(360deg)}}
+@media (prefers-reduced-motion:reduce){.deco span{animation:none;display:none}}
+header,main,footer{position:relative;z-index:1}
+header{padding:2.5vmin 4vmin 1vmin;display:flex;justify-content:space-between;align-items:center;gap:2vmin;flex-wrap:wrap}
+h1{margin:0;font-size:max(34px,6.5vmin);font-weight:700;letter-spacing:.5px;text-shadow:0 .4vmin 0 #fff}
+h1 .ic{display:inline-block;margin-right:1.5vmin;animation:wob 4s ease-in-out infinite}
+@keyframes wob{50%{transform:rotate(-10deg) scale(1.08)}}
+#meta{background:#fff;border-radius:99px;padding:1vmin 2.5vmin;font-size:max(16px,2.4vmin);box-shadow:0 .5vmin 0 rgba(43,35,80,.12)}
+#err{color:#d6336c}
+main{flex:1;padding:1vmin 4vmin 3vmin}
+h2{margin:1vmin 0 2vmin;font-size:max(24px,4vmin);font-weight:600}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:2.5vmin;margin-bottom:3vmin}
+.card{border-radius:3.5vmin;padding:2.5vmin 3vmin;display:flex;align-items:center;gap:2.5vmin;box-shadow:0 .8vmin 0 rgba(43,35,80,.12);border:.5vmin solid #fff;position:relative}
+.card .day{font-size:max(44px,8vmin);line-height:1;filter:drop-shadow(0 .3vmin 0 #fff)}
+.card .txt{display:flex;flex-direction:column;gap:.6vmin;min-width:0}
+.card .lbl{font-size:max(20px,3vmin);font-weight:600;opacity:.75}
+.card .val{font-size:max(28px,4.8vmin);font-weight:700;line-height:1.1}
+.card .food{margin-left:auto;font-size:max(40px,7vmin)}
+.card.today{outline:1vmin solid #ff6b9a;transform:scale(1.03)}
+.card.today::after{content:"TODAY ⭐";position:absolute;top:-2.2vmin;right:2.5vmin;background:#ff6b9a;color:#fff;font-size:max(14px,2.2vmin);font-weight:700;padding:.5vmin 1.8vmin;border-radius:99px}
+.badge{display:inline-block;background:#ffe066;border-radius:99px;padding:.4vmin 2vmin;font-size:max(22px,3.6vmin)}
+.c0{background:#ffd1dc}.c1{background:#c8f7c5}.c2{background:#fff0a8}.c3{background:#cfe5ff}.c4{background:#e7d4ff}.c5{background:#ffdcb8}.c6{background:#c9f3ef}
+footer{position:sticky;bottom:0;z-index:2;margin:0 3vmin 2vmin;padding:1.4vmin 3vmin;background:#2b2350;color:#ffe9a8;font-size:max(15px,2.2vmin);text-align:center;border-radius:99px;box-shadow:0 .6vmin 0 rgba(0,0,0,.15)}
 </style></head><body>
-<header><h1 id="title">Fridge board</h1><div><span id="upd"></span> <span id="err"></span></div></header>
+<div class="deco" aria-hidden="true"><span>🍎</span><span>🍓</span><span>🍌</span><span>🥕</span><span>🍇</span></div>
+<header><h1><span class="ic">🧲</span><span id="title">Fridge board</span></h1><div id="meta"><span id="upd"></span> <span id="err"></span></div></header>
 <main id="board"></main>
-<footer>Public page — do not put sensitive or personal information here.</footer>
+<footer>⚠️ Public page — do not put sensitive or personal information here.</footer>
 <script>
 "use strict";
 let last=null;
+const DAYS={mon:["🐻",1],tue:["🍎",2],wed:["🦄",3],thu:["🚀",4],fri:["🎉",5],sat:["🌈",6],sun:["☀️",0]};
+const FOOD=[[/no school|holiday|vacation|vakantie|congé/i,"🏖️"],[/pasta|spaghetti|lasagn|macaroni/i,"🍝"],[/soup|soep|soupe/i,"🍲"],[/pizza/i,"🍕"],[/fish|vis|poisson/i,"🐟"],[/chicken|kip|poulet/i,"🍗"],[/rice|rijst|riz/i,"🍚"],[/fruit|apple|appel/i,"🍉"],[/salad|sla/i,"🥗"],[/burger/i,"🍔"],[/fries|frites|friet/i,"🍟"],[/sandwich|bread|brood/i,"🥪"],[/menu\s*1/i,"🍝"],[/menu\s*2/i,"🍲"],[/menu\s*3/i,"🥗"],[/menu/i,"🍽️"]];
 function fmt(s){const d=new Date(s);if(isNaN(d))return String(s||"");
 return d.toLocaleString("en-GB",{timeZone:"Europe/Brussels",weekday:"short",day:"numeric",month:"short",hour:"2-digit",minute:"2-digit"});}
-function el(t,txt){const e=document.createElement(t);if(txt!=null)e.textContent=String(txt);return e;}
+function el(t,txt,c){const e=document.createElement(t);if(txt!=null)e.textContent=String(txt);if(c)e.className=c;return e;}
+function today(){const p=new Intl.DateTimeFormat("en-GB",{timeZone:"Europe/Brussels",weekday:"short",day:"numeric"}).formatToParts(new Date());
+ const g=k=>(p.find(x=>x.type===k)||{}).value||"";return {wd:g("weekday").slice(0,3).toLowerCase(),d:g("day")};}
+function card(item,i,t){
+ const s=typeof item==="string"?item:JSON.stringify(item);
+ const m=s.match(/^\s*([A-Za-z]{3})[a-z]*\.?\s*(\d{1,2})?[^:]*:\s*(.*)$/);
+ const c=el("div",null,"card c"+(i%7));
+ const key=m?m[1].toLowerCase():"";const dy=DAYS[key];
+ c.appendChild(el("div",dy?dy[0]:"📌","day"));
+ const tx=el("div",null,"txt");
+ const val=m?m[3]:s;
+ if(m)tx.appendChild(el("div",s.slice(0,s.indexOf(":")).trim(),"lbl"));
+ if(/no school/i.test(val)){const v=el("div",null,"val");v.appendChild(el("span","🎈 "+val,"badge"));tx.appendChild(v);}
+ else tx.appendChild(el("div",val,"val"));
+ c.appendChild(tx);
+ const blank=!val.trim()||/^[—–-]+$/.test(val.trim());
+ let f=blank?"":"🍱";for(const [re,e] of FOOD){if(re.test(val)){f=e;break;}}
+ if(f)c.appendChild(el("div",f,"food"));
+ if(dy&&key===t.wd&&(!m[2]||m[2]===t.d))c.classList.add("today");
+ return c;}
 function render(b){
  document.getElementById("title").textContent=b.title||"Fridge board";
  document.title=b.title||"Fridge board";
- document.getElementById("upd").textContent=b.updated?"Updated "+fmt(b.updated):"";
- const m=document.getElementById("board");m.replaceChildren();
+ document.getElementById("upd").textContent=b.updated?"🕒 Updated "+fmt(b.updated):"";
+ const m=document.getElementById("board");m.replaceChildren();const t=today();
  (Array.isArray(b.sections)?b.sections:[]).forEach(s=>{
-  const sec=el("section");sec.appendChild(el("h2",s&&s.heading||""));
-  const ul=el("ul");(Array.isArray(s&&s.items)?s.items:[]).forEach(i=>ul.appendChild(el("li",typeof i==="string"?i:JSON.stringify(i))));
-  sec.appendChild(ul);m.appendChild(sec);});
+  m.appendChild(el("h2",s&&s.heading||""));
+  const g=el("div",null,"grid");(Array.isArray(s&&s.items)?s.items:[]).forEach((it,i)=>g.appendChild(card(it,i,t)));
+  m.appendChild(g);});
 }
 async function tick(){
  try{const r=await fetch("data.json?t="+Date.now(),{cache:"no-store"});
@@ -45,4 +88,5 @@ async function tick(){
  }catch(e){document.getElementById("err").textContent="(offline, retrying)";}
 }
 tick();setInterval(tick,10000);
+setInterval(()=>{last=null;},3600000);
 </script></body></html>
