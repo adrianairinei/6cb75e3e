@@ -4,49 +4,52 @@
 <meta name="robots" content="noindex,nofollow"><meta name="referrer" content="no-referrer">
 <title>Fridge board</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@500;700&display=swap" rel="stylesheet">
 <style>
-:root{--ink:#2b2350}
+:root{--ink:#fff;--gold:#ffd23f;--red:#ff3b3b}
 html,body{margin:0;min-height:100%}
-body{font-family:Fredoka,"Baloo 2","Comic Sans MS","Segoe UI Rounded",system-ui,sans-serif;color:var(--ink);
- background:linear-gradient(135deg,#fff3c4 0%,#ffd6e7 45%,#cdeeff 100%);display:flex;flex-direction:column;min-height:100vh;position:relative;overflow-x:hidden}
+body{font-family:Oswald,"Arial Narrow",Impact,system-ui,sans-serif;color:var(--ink);display:flex;flex-direction:column;min-height:100vh;position:relative;overflow-x:hidden;
+ background:repeating-linear-gradient(90deg,#1f8a3a 0 10vw,#23993f 10vw 20vw);}
 .deco{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
-.deco span{position:absolute;bottom:-10vmin;font-size:6vmin;opacity:.35;animation:up 28s linear infinite;will-change:transform}
-.deco span:nth-child(1){left:6%;animation-delay:0s}.deco span:nth-child(2){left:24%;animation-delay:-7s;font-size:4.5vmin}
-.deco span:nth-child(3){left:47%;animation-delay:-14s}.deco span:nth-child(4){left:68%;animation-delay:-4s;font-size:5vmin}
-.deco span:nth-child(5){left:88%;animation-delay:-19s}
-@keyframes up{to{transform:translateY(-120vh) rotate(360deg)}}
-@media (prefers-reduced-motion:reduce){.deco span{animation:none;display:none}}
+.deco svg{width:100%;height:100%}
 header,main,footer{position:relative;z-index:1}
-header{padding:2.5vmin 4vmin 1vmin;display:flex;justify-content:space-between;align-items:center;gap:2vmin;flex-wrap:wrap}
-h1{margin:0;font-size:max(34px,6.5vmin);font-weight:700;letter-spacing:.5px;text-shadow:0 .4vmin 0 #fff}
-h1 .ic{display:inline-block;margin-right:1.5vmin;animation:wob 4s ease-in-out infinite}
-@keyframes wob{50%{transform:rotate(-10deg) scale(1.08)}}
-#meta{background:#fff;border-radius:99px;padding:1vmin 2.5vmin;font-size:max(16px,2.4vmin);box-shadow:0 .5vmin 0 rgba(43,35,80,.12)}
-#err{color:#d6336c}
-main{flex:1;padding:1vmin 4vmin 3vmin}
-h2{margin:1vmin 0 2vmin;font-size:max(24px,4vmin);font-weight:600}
+header{margin:2vmin 3vmin 1vmin;padding:1.5vmin 3vmin;display:flex;justify-content:space-between;align-items:center;gap:2vmin;flex-wrap:wrap;
+ background:linear-gradient(#141821,#05070b);border:.5vmin solid #3a4150;border-radius:1.5vmin;box-shadow:0 1vmin 2vmin rgba(0,0,0,.45)}
+h1{margin:0;font-family:"Bebas Neue",Oswald,Impact,sans-serif;font-weight:400;font-size:max(40px,8vmin);letter-spacing:.3vmin;line-height:1;color:var(--gold);text-shadow:0 0 1.2vmin rgba(255,210,63,.6)}
+h1 .ic{display:inline-block;margin-right:1.5vmin;animation:spin 6s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+@media (prefers-reduced-motion:reduce){h1 .ic,.live i{animation:none}}
+#meta{font-family:"Courier New",monospace;font-weight:700;background:#000;color:#ff9f1c;border:.3vmin solid #333;border-radius:.8vmin;padding:1vmin 2vmin;font-size:max(16px,2.6vmin);letter-spacing:.2vmin}
+#err{color:var(--red)}
+main{flex:1;padding:1vmin 3vmin 3vmin}
+h2{display:inline-block;margin:1.5vmin 0 3vmin;padding:.6vmin 3vmin;font-family:"Bebas Neue",Oswald,sans-serif;font-weight:400;font-size:max(28px,5vmin);letter-spacing:.2vmin;background:#fff;color:#0d4d1f;border-radius:.8vmin;transform:skew(-8deg);box-shadow:.8vmin .8vmin 0 rgba(0,0,0,.35)}
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:2.5vmin;margin-bottom:3vmin}
-.card{border-radius:3.5vmin;padding:2.5vmin 3vmin;display:flex;align-items:center;gap:2.5vmin;box-shadow:0 .8vmin 0 rgba(43,35,80,.12);border:.5vmin solid #fff;position:relative}
-.card .day{font-size:max(44px,8vmin);line-height:1;filter:drop-shadow(0 .3vmin 0 #fff)}
-.card .txt{display:flex;flex-direction:column;gap:.6vmin;min-width:0}
-.card .lbl{font-size:max(20px,3vmin);font-weight:600;opacity:.75}
-.card .val{font-size:max(28px,4.8vmin);font-weight:700;line-height:1.1}
-.card .food{margin-left:auto;font-size:max(40px,7vmin)}
-.card.today{outline:1vmin solid #ff6b9a;transform:scale(1.03)}
-.card.today::after{content:"TODAY ⭐";position:absolute;top:-2.2vmin;right:2.5vmin;background:#ff6b9a;color:#fff;font-size:max(14px,2.2vmin);font-weight:700;padding:.5vmin 1.8vmin;border-radius:99px}
-.badge{display:inline-block;background:#ffe066;border-radius:99px;padding:.4vmin 2vmin;font-size:max(22px,3.6vmin)}
-.c0{background:#ffd1dc}.c1{background:#c8f7c5}.c2{background:#fff0a8}.c3{background:#cfe5ff}.c4{background:#e7d4ff}.c5{background:#ffdcb8}.c6{background:#c9f3ef}
-footer{position:sticky;bottom:0;z-index:2;margin:0 3vmin 2vmin;padding:1.4vmin 3vmin;background:#2b2350;color:#ffe9a8;font-size:max(15px,2.2vmin);text-align:center;border-radius:99px;box-shadow:0 .6vmin 0 rgba(0,0,0,.15)}
+.card{border-radius:1.6vmin;padding:2.5vmin 2.5vmin 3vmin;display:flex;flex-direction:column;align-items:center;text-align:center;gap:1.2vmin;position:relative;overflow:hidden;
+ background:linear-gradient(160deg,#1b2a4a,#0b1426);border:.5vmin solid rgba(255,255,255,.85);box-shadow:0 1.2vmin 0 rgba(0,0,0,.35)}
+.card::before{content:"";position:absolute;inset:0 0 auto 0;height:1.4vmin;background:var(--k,#3a86ff)}
+.card .num{font-family:"Bebas Neue",Impact,sans-serif;font-size:max(60px,12vmin);line-height:.85;color:var(--k,#3a86ff);-webkit-text-stroke:.25vmin #fff;opacity:.95}
+.card .day{font-size:max(30px,4.5vmin);line-height:1}
+.card .txt{display:flex;flex-direction:column;gap:.8vmin;min-width:0;align-items:center}
+.card .lbl{font-family:"Bebas Neue",Oswald,sans-serif;font-size:max(26px,4.4vmin);letter-spacing:.3vmin;color:#cfd8e6}
+.card .val{font-weight:700;font-size:max(30px,5vmin);line-height:1.05;text-transform:uppercase}
+.card .food{font-size:max(36px,6vmin)}
+.card.today{border-color:var(--gold);transform:scale(1.04);box-shadow:0 0 0 .6vmin var(--gold),0 0 4vmin rgba(255,210,63,.7)}
+.card.today::after{content:"⚽ MATCH DAY";position:absolute;top:2vmin;right:-.5vmin;background:var(--red);color:#fff;font-family:"Bebas Neue",sans-serif;font-size:max(18px,3vmin);letter-spacing:.2vmin;padding:.4vmin 2vmin;border-radius:.6vmin 0 0 .6vmin}
+.live{position:absolute;top:2vmin;left:2vmin;font-family:"Bebas Neue",sans-serif;font-size:max(16px,2.6vmin);color:#fff;display:flex;align-items:center;gap:.8vmin}
+.live i{width:1.6vmin;height:1.6vmin;border-radius:50%;background:var(--red);animation:blink 1s steps(2) infinite}
+@keyframes blink{50%{opacity:.2}}
+.badge{display:inline-block;background:var(--gold);color:#111;border-radius:.8vmin;padding:.4vmin 2vmin;font-size:max(26px,4.2vmin)}
+.c0{--k:#e63946}.c1{--k:#3a86ff}.c2{--k:#ffbe0b}.c3{--k:#2ec4b6}.c4{--k:#ff6d00}.c5{--k:#9d4edd}.c6{--k:#06d6a0}
+footer{position:sticky;bottom:0;z-index:2;margin:0 3vmin 2vmin;padding:1.4vmin 3vmin;background:#000;color:var(--gold);font-size:max(16px,2.4vmin);font-weight:700;letter-spacing:.1vmin;text-align:center;border:.3vmin solid var(--gold);border-radius:1vmin}
 </style></head><body>
-<div class="deco" aria-hidden="true"><span>🍎</span><span>🍓</span><span>🍌</span><span>🥕</span><span>🍇</span></div>
-<header><h1><span class="ic">🧲</span><span id="title">Fridge board</span></h1><div id="meta"><span id="upd"></span> <span id="err"></span></div></header>
+<div class="deco" aria-hidden="true"><svg viewBox="0 0 1920 1080" preserveAspectRatio="none" fill="none" stroke="rgba(255,255,255,.35)" stroke-width="6"><rect x="40" y="40" width="1840" height="1000"/><line x1="960" y1="40" x2="960" y2="1040"/><circle cx="960" cy="540" r="150"/><circle cx="960" cy="540" r="8" fill="rgba(255,255,255,.35)"/><rect x="40" y="260" width="270" height="560"/><rect x="40" y="400" width="90" height="280"/><rect x="1610" y="260" width="270" height="560"/><rect x="1790" y="400" width="90" height="280"/><path d="M310 430 A140 140 0 0 1 310 650"/><path d="M1610 430 A140 140 0 0 0 1610 650"/></svg></div>
+<header><h1><span class="ic">⚽</span><span id="title">Fridge board</span></h1><div id="meta"><span id="upd"></span> <span id="err"></span></div></header>
 <main id="board"></main>
 <footer>⚠️ Public page — do not put sensitive or personal information here.</footer>
 <script>
 "use strict";
 let last=null;
-const DAYS={mon:["🐻",1],tue:["🍎",2],wed:["🦄",3],thu:["🚀",4],fri:["🎉",5],sat:["🌈",6],sun:["☀️",0]};
+const DAYS={mon:["⚽",1],tue:["🥅",2],wed:["👟",3],thu:["🧤",4],fri:["🏆",5],sat:["🏟️",6],sun:["⚽",7]};
 const FOOD=[[/no school|holiday|vacation|vakantie|congé/i,"🏖️"],[/pasta|spaghetti|lasagn|macaroni/i,"🍝"],[/soup|soep|soupe/i,"🍲"],[/pizza/i,"🍕"],[/fish|vis|poisson/i,"🐟"],[/chicken|kip|poulet/i,"🍗"],[/rice|rijst|riz/i,"🍚"],[/fruit|apple|appel/i,"🍉"],[/salad|sla/i,"🥗"],[/burger/i,"🍔"],[/fries|frites|friet/i,"🍟"],[/sandwich|bread|brood/i,"🥪"],[/menu\s*1/i,"🍝"],[/menu\s*2/i,"🍲"],[/menu\s*3/i,"🥗"],[/menu/i,"🍽️"]];
 function fmt(s){const d=new Date(s);if(isNaN(d))return String(s||"");
 return d.toLocaleString("en-GB",{timeZone:"Europe/Brussels",weekday:"short",day:"numeric",month:"short",hour:"2-digit",minute:"2-digit"});}
@@ -58,22 +61,22 @@ function card(item,i,t){
  const m=s.match(/^\s*([A-Za-z]{3})[a-z]*\.?\s*(\d{1,2})?[^:]*:\s*(.*)$/);
  const c=el("div",null,"card c"+(i%7));
  const key=m?m[1].toLowerCase():"";const dy=DAYS[key];
- c.appendChild(el("div",dy?dy[0]:"📌","day"));
+ c.appendChild(el("div",dy?String(dy[1]):String(i+1),"num"));c.appendChild(el("div",dy?dy[0]:"⚽","day"));
  const tx=el("div",null,"txt");
  const val=m?m[3]:s;
  if(m)tx.appendChild(el("div",s.slice(0,s.indexOf(":")).trim(),"lbl"));
- if(/no school/i.test(val)){const v=el("div",null,"val");v.appendChild(el("span","🎈 "+val,"badge"));tx.appendChild(v);}
+ if(/no school/i.test(val)){const v=el("div",null,"val");v.appendChild(el("span","😎 REST DAY · "+val,"badge"));tx.appendChild(v);}
  else tx.appendChild(el("div",val,"val"));
  c.appendChild(tx);
  const blank=!val.trim()||/^[—–-]+$/.test(val.trim());
  let f=blank?"":"🍱";for(const [re,e] of FOOD){if(re.test(val)){f=e;break;}}
  if(f)c.appendChild(el("div",f,"food"));
- if(dy&&key===t.wd&&(!m[2]||m[2]===t.d))c.classList.add("today");
+ if(dy&&key===t.wd&&(!m[2]||m[2]===t.d)){c.classList.add("today");const l=el("div",null,"live");l.appendChild(el("i"));l.appendChild(el("span","LIVE"));c.appendChild(l);}
  return c;}
 function render(b){
  document.getElementById("title").textContent=b.title||"Fridge board";
  document.title=b.title||"Fridge board";
- document.getElementById("upd").textContent=b.updated?"🕒 Updated "+fmt(b.updated):"";
+ document.getElementById("upd").textContent=b.updated?"⏱ UPDATED "+fmt(b.updated):"";
  const m=document.getElementById("board");m.replaceChildren();const t=today();
  (Array.isArray(b.sections)?b.sections:[]).forEach(s=>{
   m.appendChild(el("h2",s&&s.heading||""));
