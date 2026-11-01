@@ -24,7 +24,7 @@ h1 .ic{display:inline-block;margin-right:1.5vmin;animation:spin 6s linear infini
 main{flex:1;padding:1vmin 3vmin 3vmin}
 h2{display:inline-block;margin:1.5vmin 0 3vmin;padding:.6vmin 3vmin;font-family:"Bebas Neue",Oswald,sans-serif;font-weight:400;font-size:max(28px,5vmin);letter-spacing:.2vmin;background:#fff;color:#0d4d1f;border-radius:.8vmin;transform:skew(-8deg);box-shadow:.8vmin .8vmin 0 rgba(0,0,0,.35)}
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:2.5vmin;margin-bottom:3vmin}
-.card{border-radius:1.6vmin;padding:2.5vmin 2.5vmin 3vmin;display:flex;flex-direction:column;align-items:center;text-align:center;gap:1.2vmin;position:relative;overflow:hidden;
+.card{border-radius:1.6vmin;padding:2.5vmin 2.5vmin 5vmin;display:flex;flex-direction:column;align-items:center;text-align:center;gap:1.2vmin;position:relative;overflow:hidden;
  background:linear-gradient(160deg,#1b2a4a,#0b1426);border:.5vmin solid rgba(255,255,255,.85);box-shadow:0 1.2vmin 0 rgba(0,0,0,.35)}
 .card::before{content:"";position:absolute;inset:0 0 auto 0;height:1.4vmin;background:var(--k,#3a86ff)}
 .card .num{font-family:"Bebas Neue",Impact,sans-serif;font-size:max(60px,12vmin);line-height:.85;color:var(--k,#3a86ff);-webkit-text-stroke:.25vmin #fff;opacity:.95}
@@ -34,7 +34,7 @@ h2{display:inline-block;margin:1.5vmin 0 3vmin;padding:.6vmin 3vmin;font-family:
 .card .val{font-weight:700;font-size:max(30px,5vmin);line-height:1.05;text-transform:uppercase}
 .card .food{font-size:max(36px,6vmin)}
 .card.today{border-color:var(--gold);transform:scale(1.04);box-shadow:0 0 0 .6vmin var(--gold),0 0 4vmin rgba(255,210,63,.7)}
-.card.today::after{content:"⚽ MATCH DAY";position:absolute;top:2vmin;right:-.5vmin;background:var(--red);color:#fff;font-family:"Bebas Neue",sans-serif;font-size:max(18px,3vmin);letter-spacing:.2vmin;padding:.4vmin 2vmin;border-radius:.6vmin 0 0 .6vmin}
+.card.today::after{content:"⚽ MATCH DAY";position:absolute;bottom:0;left:0;right:0;background:var(--red);color:#fff;font-family:"Bebas Neue",sans-serif;font-size:max(18px,3vmin);letter-spacing:.2vmin;padding:.4vmin 2vmin}
 .live{position:absolute;top:2vmin;left:2vmin;font-family:"Bebas Neue",sans-serif;font-size:max(16px,2.6vmin);color:#fff;display:flex;align-items:center;gap:.8vmin}
 .live i{width:1.6vmin;height:1.6vmin;border-radius:50%;background:var(--red);animation:blink 1s steps(2) infinite}
 @keyframes blink{50%{opacity:.2}}
