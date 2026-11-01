@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><meta name="referrer" content="no-referrer">
+<title>Fridge board</title>
+<style>
+html,body{margin:0;height:100%;background:#16191d;color:#e8e6e1;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+body{display:flex;flex-direction:column}
+header{padding:2.5vmin 4vmin 1vmin;display:flex;justify-content:space-between;align-items:baseline;gap:2vmin;flex-wrap:wrap}
+h1{margin:0;font-size:max(32px,6vmin);font-weight:600}
+#upd{font-size:max(16px,2.4vmin);color:#9aa3ad}
+main{flex:1;padding:1vmin 4vmin;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,520px),1fr));gap:3vmin;align-content:start;overflow:auto}
+section{background:#20252b;border-radius:2vmin;padding:2.5vmin 3.5vmin}
+h2{margin:0 0 1.5vmin;font-size:max(22px,3.6vmin);color:#8fc1b5;font-weight:600}
+ul{margin:0;padding:0;list-style:none}
+li{font-size:max(22px,4vmin);padding:1.2vmin 0;border-bottom:1px solid #2e353d;line-height:1.25}
+li:last-child{border-bottom:0}
+footer{padding:1.5vmin 4vmin;background:#3a2f1c;color:#f3d79a;font-size:max(14px,2vmin);text-align:center}
+#err{color:#e88;font-size:max(14px,2vmin)}
+</style></head><body>
+<header><h1 id="title">Fridge board</h1><div><span id="upd"></span> <span id="err"></span></div></header>
+<main id="board"></main>
+<footer>Public page — do not put sensitive or personal information here.</footer>
+<script>
+"use strict";
+let last=null;
+function fmt(s){const d=new Date(s);if(isNaN(d))return String(s||"");
+return d.toLocaleString("en-GB",{timeZone:"Europe/Brussels",weekday:"short",day:"numeric",month:"short",hour:"2-digit",minute:"2-digit"});}
+function el(t,txt){const e=document.createElement(t);if(txt!=null)e.textContent=String(txt);return e;}
+function render(b){
+ document.getElementById("title").textContent=b.title||"Fridge board";
+ document.title=b.title||"Fridge board";
+ document.getElementById("upd").textContent=b.updated?"Updated "+fmt(b.updated):"";
+ const m=document.getElementById("board");m.replaceChildren();
+ (Array.isArray(b.sections)?b.sections:[]).forEach(s=>{
+  const sec=el("section");sec.appendChild(el("h2",s&&s.heading||""));
+  const ul=el("ul");(Array.isArray(s&&s.items)?s.items:[]).forEach(i=>ul.appendChild(el("li",typeof i==="string"?i:JSON.stringify(i))));
+  sec.appendChild(ul);m.appendChild(sec);});
+}
+async function tick(){
+ try{const r=await fetch("data.json?t="+Date.now(),{cache:"no-store"});
+  if(!r.ok)throw new Error(r.status);const txt=await r.text();
+  document.getElementById("err").textContent="";
+  if(txt!==last){render(JSON.parse(txt));last=txt;}
+ }catch(e){document.getElementById("err").textContent="(offline, retrying)";}
+}
+tick();setInterval(tick,10000);
+</script></body></html>
